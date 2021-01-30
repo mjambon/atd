@@ -1,0 +1,19 @@
+
+(rule
+ (targets test.flow.js)
+ (deps test.atd)
+ (action
+  (run %{bin:atdjs} %{deps} -o %{targets})))
+
+(alias
+ (name runtest)
+ (package atds)
+ (action (diff test.expected.js test.flow.js)))
+
+;;(alias
+;; (name runtest)
+;; (package atds)
+;; (deps
+;;  atds_test.js
+;;  test.flow.js)
+;; (action (run ./run_test.sh)))
